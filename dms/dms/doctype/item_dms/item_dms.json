@@ -238,7 +238,6 @@
   {
    "fieldname": "attributes",
    "fieldtype": "Table",
-   "hidden": 1,
    "label": "Attributes",
    "no_copy": 1,
    "options": "Item Variant Attribute"
@@ -284,7 +283,7 @@
  "icon": "icon-tag",
  "links": [],
  "max_attachments": 1,
- "modified": "2022-07-12 14:20:37.622433",
+ "modified": "2022-07-20 14:01:20.755830",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Item dms",
@@ -318,6 +317,7 @@
   }
  ],
  "search_fields": "item_name,description,item_group",
+ "sort_field": "modified",
  "sort_order": "DESC",
  "title_field": "item_name"
 }
