@@ -24,21 +24,21 @@ frappe.ui.form.on('Item dms', {
 
     }) 
    },
- })
+ });
 
-  }
+  },
 
-//   refresh(frm) {
-//           frm.set_query('attribute_value','item_character',
-//                                   function(doc,cdt,cdn) {
+   refresh: function(frm) {
+           frm.set_query('attribute_value','item_character',
+                                   function(doc,cdt,cdn) {
 
-//                       var d = locals[cdt][cdn];
-//                        return{
-//                              " filters": {
-//                                     "attribute" : d.attribute
-//                                       }
-//                              };
-//                           });
-//                }
+                       var d = locals[cdt][cdn];
+                        return{
+                              " filters": {
+                                     "attribute" : d.attribute
+                                       }
+                              }
+                           });
+                }
 
 });
