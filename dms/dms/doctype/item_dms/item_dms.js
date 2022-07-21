@@ -3,27 +3,23 @@
 
 frappe.ui.form.on('Item dms', {
 
-  attribute: function(frm){
+  refresh: function(frm){
 
   let cat_name = frm.doc.cat_name;
 
-   if(attribute){
+   if(cat_name){
     frappe.call({
      method: "dms.dms.doctype.item_dms.item_dms.get_attribute_category",
      args: {cat_name: cat_name}
-    }).done((r) => {
+    }).then(records => {
 
    frm.doc.item_character = []
 
-   $.each(r.message, function(_i, e){
-   let entry = frm.add_child("item_character");
-   entry.attribute = e.attribute;
+   $.each(records, function(i, r){
+       frm.add_child("item_character",{attribute: r.attribute});
+   })
  })
- refresh_field("item_character")
 
-  })
- }
-
-}
+})
 
 });
