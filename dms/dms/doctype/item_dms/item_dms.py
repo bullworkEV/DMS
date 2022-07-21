@@ -11,7 +11,8 @@ class Itemdms(Document):
 
 @frappe.whitelist()
 def get_attribute_category(cat_name):
-        attributes = frappe.db.sql(f""" SELECT b.attribute_name as attribute FROM `tabAttributes of Category` as a
+        attributes = frappe.db.sql(f""" SELECT b.attribute_name as attribute 
+                       FROM `tabAttributes of Category` as a
                        left join `tabDMS Character` as b on a.name=b.parent 
                        where  cat_name='{cat_name}' """, as_dict=True)
         return attributes
