@@ -22,6 +22,8 @@
   "section_break_11",
   "description",
   "item_characterization",
+  "maintain_attribute",
+  "cat_name",
   "item_character",
   "section_break20",
   "child_class",
@@ -136,6 +138,7 @@
    "oldfieldtype": "Text"
   },
   {
+   "depends_on": "maintain_attribute",
    "fieldname": "item_character",
    "fieldtype": "Table",
    "label": "Character",
@@ -278,12 +281,26 @@
    "fieldname": "supplier_details_1",
    "fieldtype": "Section Break",
    "label": "Supplier Details"
+  },
+  {
+   "depends_on": "maintain_attribute",
+   "fieldname": "cat_name",
+   "fieldtype": "Link",
+   "label": "Category",
+   "options": "Attributes of Category",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "maintain_attribute",
+   "fieldtype": "Check",
+   "label": "Maintain attribute for category"
   }
  ],
  "icon": "icon-tag",
  "links": [],
  "max_attachments": 1,
- "modified": "2022-07-20 20:36:41.383312",
+ "modified": "2022-07-21 10:16:19.966662",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Item dms",
