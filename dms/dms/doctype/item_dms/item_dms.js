@@ -3,21 +3,21 @@
 
 frappe.ui.form.on('Item dms', {
 
-  author: function(frm){
+  attribute: function(frm){
 
   let cat_name = frm.doc.cat_name;
 
-   if(author){
+   if(attribute){
     frappe.call({
      method: "dms.dms.doctype.item_dms.item_dms.get_attribute_category",
      args: {cat_name: cat_name}
     }).done((r) => {
 
-   frm.doc.my_article = []
+   frm.doc.item_character = []
 
    $.each(r.message, function(_i, e){
    let entry = frm.add_child("item_character");
-   entry.article_name = e.name;
+   entry.attribute = e.attribute;
  })
  refresh_field("item_character")
 

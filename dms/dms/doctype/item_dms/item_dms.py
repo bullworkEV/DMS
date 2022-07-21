@@ -8,3 +8,8 @@ from frappe.model.document import Document
 
 class Itemdms(Document):
 	pass
+
+@frappe.whitelist()
+def get_attribute_category(cat_name):
+attributes = frappe.db.sql(f""" SELECT attribute FROM `tabAttributes of Category` WHERE cat_name='{cat_name}' """, as_dict=True)
+return attributes
