@@ -34,10 +34,13 @@ frappe.ui.form.on('Item dms', {
 
                        var d = locals[cdt][cdn];
                         return{
-                              " filters": {
-                                     "attribute" : d.attribute
+                              query: 'dms.dms.doctype.item_dms.item_dms.query_attribute',
+//frappe.get_list('Item character attribute',
+                              filters : {
+                                     'attribute_of' : 'Motor'
                                        }
-                              }
+                                                            
+                            }
                            });
                 }
 
