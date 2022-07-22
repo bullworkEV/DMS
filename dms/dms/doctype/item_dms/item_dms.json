@@ -300,7 +300,7 @@
  "icon": "icon-tag",
  "links": [],
  "max_attachments": 1,
- "modified": "2022-07-21 10:16:19.966662",
+ "modified": "2022-07-22 18:13:59.763963",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Item dms",
@@ -331,6 +331,18 @@
    "read": 1,
    "report": 1,
    "role": "Stock User"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Design user",
+   "share": 1,
+   "write": 1
   }
  ],
  "search_fields": "item_name,description,item_group",
