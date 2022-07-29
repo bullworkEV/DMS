@@ -16,7 +16,7 @@ def get_attribute_category(cat_name):
                        left join `tabDMS Character` as b on a.name=b.parent 
                        where  cat_name='{cat_name}' """, as_dict=True)
         return attributes
-
+#changes made
 @frappe.whitelist()
 def query_attribute(doctype,txt,searchfield,start,page_len,filters):
         char_value=frappe.db.sql(""" select character_value 
