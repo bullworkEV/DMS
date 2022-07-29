@@ -23,6 +23,7 @@ def query_attribute(doctype,txt,searchfield,start,page_len,filters):
                        from `tabItem character` as a
                        left join `tabItem character value` as b
                        on a.name = b.parent 
-                       where a.character_name='Material' """
+                       where a.character_name='{charname}' """
+                       .format(charname=filters["attribute"])
                        )
         return char_value

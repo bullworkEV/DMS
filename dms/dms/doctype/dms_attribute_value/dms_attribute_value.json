@@ -1,0 +1,40 @@
+{
+ "actions": [],
+ "creation": "2022-07-29 14:22:43.669748",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "character_value",
+  "abbr"
+ ],
+ "fields": [
+  {
+   "fieldname": "character_value",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Character Value",
+   "reqd": 1
+  },
+  {
+   "description": "This will be appended to the Item Code of the variant. For example, if your abbreviation is \"SM\", and the item code is \"T-SHIRT\", the item code of the variant will be \"T-SHIRT-SM\"",
+   "fieldname": "abbr",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Abbreviation",
+   "reqd": 1,
+   "search_index": 1
+  }
+ ],
+ "icon": "icon-edit",
+ "istable": 1,
+ "links": [],
+ "modified": "2022-07-29 14:22:43.669748",
+ "modified_by": "Administrator",
+ "module": "dms",
+ "name": "DMS Attribute Value",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -37,7 +37,7 @@ frappe.ui.form.on('Item dms', {
                               query: 'dms.dms.doctype.item_dms.item_dms.query_attribute',
 //frappe.get_list('Item character attribute',
                               filters : {
-                                     'attribute_of' : 'Motor'
+                                     'attribute' : d.attribute
                                        }
                                                             
                             }
