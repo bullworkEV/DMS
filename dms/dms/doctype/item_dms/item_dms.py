@@ -18,11 +18,11 @@ def get_attribute_category(cat_name):
         return attributes
 
 @frappe.whitelist()
-def query_attribute(char_name):
+def query_attribute(doctype,txt,searchfield,start,page_len,filters):
         char_value=frappe.db.sql(""" select character_value 
                        from `tabItem character` as a
                        left join `tabItem character value` as b
                        on a.name = b.parent 
-                       where a.character_name='Material' """,
-                       as_dict=True)
+                       where a.character_name='Material' """
+                       )
         return char_value
