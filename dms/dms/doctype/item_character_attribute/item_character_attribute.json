@@ -10,6 +10,7 @@
   "attribute",
   "column_break_2",
   "attribute_value",
+  "attribute_value_both",
   "numeric_values",
   "section_break_4",
   "from_range",
@@ -40,6 +41,7 @@
    "fetch_from": "item_character_values.character_value",
    "fieldname": "attribute_value",
    "fieldtype": "Link",
+   "in_global_search": 1,
    "in_list_view": 1,
    "label": "Attribute Value",
    "options": "Item character value"
@@ -74,16 +76,28 @@
    "fieldname": "to_range",
    "fieldtype": "Float",
    "label": "To Range"
+  },
+  {
+   "depends_on": "eval:!doc.attribute_value;\n",
+   "fetch_from": "doc.item_character.attribute_value",
+   "fetch_if_empty": 1,
+   "fieldname": "attribute_value_both",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Value Numeric & Attribute",
+   "read_only_depends_on": "eval:doc.attribute_value;\n"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2022-07-29 12:42:25.038819",
+ "modified": "2022-07-29 16:40:44.655767",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Item character attribute",
  "owner": "Administrator",
  "permissions": [],
+ "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC"
 }

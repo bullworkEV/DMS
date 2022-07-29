@@ -300,7 +300,7 @@
  "icon": "icon-tag",
  "links": [],
  "max_attachments": 1,
- "modified": "2022-07-22 18:13:59.763963",
+ "modified": "2022-07-29 16:33:32.687464",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Item dms",
@@ -346,6 +346,7 @@
   }
  ],
  "search_fields": "item_name,description,item_group",
+ "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "title_field": "item_name"
