@@ -3,11 +3,57 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
+#import frappe
+#from frappe.model.document import Document
+
+import copy
+import json
+from typing import Dict, List, Optional
+
 import frappe
+from frappe import _
 from frappe.model.document import Document
+from frappe.utils import (
+	cint,
+	cstr,
+	flt,
+	formatdate,
+	get_link_to_form,
+	getdate,
+	now_datetime,
+	nowtime,
+	strip,
+	strip_html,
+)
+from frappe.utils.html_utils import clean_html
+
+import erpnext
+from erpnext.controllers.item_variant import (
+	ItemVariantExistsError,
+	copy_attributes_to_variant,
+	get_variant,
+	make_variant_item_code,
+	validate_item_variant_attributes,
+)
+from erpnext.setup.doctype.item_group.item_group import invalidate_cache_for
+from erpnext.stock.doctype.item_default.item_default import ItemDefault
 
 class Itemdms(Document):
-	pass
+        def autoname(self):
+		if frappe.db.get_default("item_naming_by") == "Naming Series":
+			if self.variant_of:
+				if not self.item_code:
+					template_item_name = frappe.db.get_value("Item", self.variant_of, "item_name")
+					make_variant_item_code(self.variant_of, template_item_name, self)
+			else:
+				from frappe.model.naming import set_name_by_naming_series
+
+				set_name_by_naming_series(self)
+				self.item_code = self.name
+
+		self.item_code = strip(self.item_code)
+		self.name = self.item_code
+	
 
 @frappe.whitelist()
 def get_attribute_category(cat_name):
