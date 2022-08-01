@@ -61,10 +61,12 @@
    "bold": 1,
    "fieldname": "item_code",
    "fieldtype": "Data",
+   "in_global_search": 1,
    "label": "Item Code",
    "no_copy": 1,
    "oldfieldname": "item_code",
-   "oldfieldtype": "Data"
+   "oldfieldtype": "Data",
+   "search_index": 1
   },
   {
    "depends_on": "variant_of",
@@ -79,6 +81,7 @@
    "fieldname": "item_name",
    "fieldtype": "Data",
    "in_filter": 1,
+   "in_global_search": 1,
    "label": "Item Name",
    "oldfieldname": "item_name",
    "oldfieldtype": "Data",
@@ -300,7 +303,7 @@
  "icon": "icon-tag",
  "links": [],
  "max_attachments": 1,
- "modified": "2022-07-29 16:33:32.687464",
+ "modified": "2022-08-01 13:49:57.958517",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Item dms",
