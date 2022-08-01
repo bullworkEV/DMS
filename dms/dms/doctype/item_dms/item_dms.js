@@ -44,3 +44,17 @@ frappe.ui.form.on('Item dms', {
                 }
 
 });
+
+
+frappe.ui.form.on('Item character attribute', {
+	attribute_value:function(frm,cdt,cdn){
+        
+       let row = frappe.get_doc(cdt,cdn);
+       //msgprint("message"+row.attribute_value);
+       row.attribute_value_both = row.attribute_value
+       //msgprint(row);
+       frm.set_df_property('attribute_value_both',  'read_only',  !frm.doc.attribute_value ? 0 : 1);
+       
+        } 
+	
+});
