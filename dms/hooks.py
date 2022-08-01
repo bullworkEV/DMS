@@ -104,4 +104,12 @@ app_version = "0.0.1"
 # override_whitelisted_methods = {
 # 	"frappe.core.doctype.event.event.get_events": "dms.event.get_events"
 # }
-
+# DMS doctypes for Global Search
+global_search_doctypes = {
+	"Default": [
+		{"doctype": "Item dms", "index": 0},
+		{"doctype": "Item character attribute", "index": 1},
+		
+		
+	],
+}
