@@ -47,12 +47,13 @@ frappe.ui.form.on('Item dms', {
 		 //let row = frappe.get_doc(cdt,cdn);
         //var row = locals['Item character attribute'][cdn];
         //frappe.model.set_value(d.doctype, d.name, 'attribute_value_both', (d.attribute_value));
+        if(frm.doc.cat_name){
         frm.doc.item_name = frm.doc.cat_name;
         $.each(frm.doc.item_character,function(i,  d) {
          frm.doc.item_name += ' '+ d.attribute_value_both;
         //msgprint("Message6" +frm.doc.item_name);
     });
-        
+           }
         //msgprint("Message5" +frm.doc.item_name);
     
 	}
