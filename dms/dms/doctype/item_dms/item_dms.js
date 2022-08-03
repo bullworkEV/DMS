@@ -58,10 +58,26 @@ frappe.ui.form.on('Item dms', {
     
 	},
 
-  trf_item_erpnext_button: function(frm) {
-		frm.add_custom_button(__("Transfer Item to Prodn"), function() {
-			frappe.set_route("List", "Item Price", {"item_code": frm.doc.name});
-		}, __("Actions"));
+  refresh: function(frm,cdt,cdn) {
+		 if (!frm.doc.trf_prodn) {
+                 frm.add_custom_button(__("Transfer Item to Prodn"), function() {
+		//	frappe.set_route("List", "Item Price", {"item_code": frm.doc.name});
+                 var itemx = frappe.model.get_doc(cdt,cdn);
+                 msgprint("M" + itemx.item_name);
+                 frappe.call({
+                              url: "/api/resource/Item/",
+                              type: "post",
+                              args: {
+                                  data: {"item_name" : itemx.item_name,
+                                                "uom": itemx.uom,
+                                          "item_group":itemx.item_group}
+                                    },
+                              callback: function(r) {
+                                        console.log(JSON.stringfy(r));
+                                    }
+                            });
+		});
+           }
 	}
 
 });
