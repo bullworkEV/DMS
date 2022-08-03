@@ -56,6 +56,12 @@ frappe.ui.form.on('Item dms', {
            }
         //msgprint("Message5" +frm.doc.item_name);
     
+	},
+
+  trf_item_erpnext_button: function(frm) {
+		frm.add_custom_button(__("Transfer Item to Prodn"), function() {
+			frappe.set_route("List", "Item Price", {"item_code": frm.doc.name});
+		}, __("Actions"));
 	}
 
 });
