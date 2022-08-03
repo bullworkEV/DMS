@@ -59,7 +59,7 @@ frappe.ui.form.on('Item dms', {
 	},
 
   refresh: function(frm,cdt,cdn) {
-		 if (!frm.doc.trf_prodn) {
+		 if (!frm.doc.trf_prodn && !frm.doc.__islocal) {
                  frm.add_custom_button(__("Transfer Item to Prodn"), function() {
 		//	frappe.set_route("List", "Item Price", {"item_code": frm.doc.name});
                  var itemx = frappe.model.get_doc(cdt,cdn);
@@ -70,12 +70,20 @@ frappe.ui.form.on('Item dms', {
                               args: {
                                   data: {"item_name" : itemx.item_name,
                                                 "uom": itemx.uom,
-                                          "item_group":itemx.item_group}
+                                          "item_group":itemx.item_group,
+                                          "description":itemx.description,
+                                         "manufacturer":itemx.manufacturer,
+                                 "manufacturer_part_no":itemx.manufacturer_part_no
+                                       }
                                     },
                               callback: function(r) {
                                         console.log(JSON.stringfy(r));
                                     }
                             });
+                 frm.set_value({trf_prodn : 1});
+                 frm.save();
+                 msgprint(frm.doc.trf_prodn);
+
 		});
            }
 	}
