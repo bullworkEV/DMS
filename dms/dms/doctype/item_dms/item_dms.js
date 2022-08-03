@@ -17,7 +17,7 @@ frappe.ui.form.on('Item dms', {
      callback: function(r){
     //   frm.doc.item_character = []
 //   msgprint('not passing records'+r.message+cat_name)   
-   $.each(r.message, function(i, r){
+        $.each(r.message, function(i, r){
        frm.add_child('item_character',{attribute: r.attribute,attribute_of:cat_name});
        frm.refresh_field('item_character')
 //       msgprint('not passing records'+r.attribute+cat_name)   
@@ -75,10 +75,14 @@ frappe.ui.form.on('Item dms', {
                                          "manufacturer":itemx.manufacturer,
                                  "manufacturer_part_no":itemx.manufacturer_part_no
                                        }
+
                                     },
                               callback: function(r) {
                                         console.log(JSON.stringfy(r));
-                                    }
+                              $.each(r.message, function(i, r){
+                               msgprint(r.item_code);
+                                        })    
+                                  }
                             });
                  frm.set_value({trf_prodn : 1});
                  frm.save();
