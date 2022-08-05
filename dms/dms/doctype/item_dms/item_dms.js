@@ -65,27 +65,58 @@ frappe.ui.form.on('Item dms', {
                  var itemx = frappe.model.get_doc(cdt,cdn);
                  msgprint("M" + itemx.item_name);
                  frappe.call({
-                              url: "/api/resource/Item/",
-                              type: "post",
+//                              url: "api/resource/Item/",
+                                method: "frappe.client.get_value",
+//                                doctype: "Item",
+//                              type: "get",
+//                              async: false,
                               args: {
-                                  data: {"item_name" : itemx.item_name,
-                                                "uom": itemx.uom,
+                                    doctype: "Item",
+                                     filters: [["item_name","=",itemx.item_name]],
+                                     fieldname: ["item_name","item_code"]
+                                       },
+
+//                                    },
+
+                              callback: function(r) {
+                            msgprint("Message_1");
+                             console.log(r.message);
+                              msgprint(r.message.item_name);
+                              msgprint(r.message.item_code);
+
+                             if (!r.message.item_name){
+                                    
+                              
+                   frappe.call({
+                               url: "/api/resource/Item/",
+                               type: "post",
+                               args: {
+                                   data: {"item_name" : itemx.item_name,
+                                                 "uom": itemx.uom,
                                           "item_group":itemx.item_group,
-                                          "description":itemx.description,
-                                         "manufacturer":itemx.manufacturer,
-                                 "manufacturer_part_no":itemx.manufacturer_part_no
+                                           "description":itemx.description,
+                                          "manufacturer":itemx.manufacturer,
+                                  "manufacturer_part_no":itemx.manufacturer_part_no
                                        }
 
                                     },
-                              callback: function(r) {
-                                        console.log(JSON.stringfy(r));
-                              $.each(r.message, function(i, r){
-                               msgprint(r.item_code);
-                                        })    
+                              callback: function(r1) {
+                                console.log(JSON.stringfy(r1));
+//                              $.each(r.message, function(i, r){
+                               msgprint(r1.message.item_code);
+
+
+//                                        })    
                                   }
                             });
-                 frm.set_value({trf_prodn : 1});
-                 frm.save();
+                               frm.set_value({trf_prodn : 1});
+                               frm.set_value({item_code : r.message.item_code});
+                               frm.save();
+
+
+                               }
+                         }
+                   });
                  msgprint(frm.doc.trf_prodn);
 
 		});
