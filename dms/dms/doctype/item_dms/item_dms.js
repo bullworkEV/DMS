@@ -87,13 +87,13 @@ frappe.ui.form.on('Item dms', {
 
 		                                                            });
                                                             } 
-                                               let d1 = frappe.get_doc(cdt,cdn);
+                                              // let d1 = frappe.get_doc(cdt,cdn);
                                                   //msgprint(d1.attribute);
                                                 frm.set_query('attribute_value','item_character',
                                                        function(frm,cdt,cdn) {
 
                                                       let  d = frappe.get_doc(cdt,cdn);
-                                                      msgprint(d.attribute);
+                                                     // msgprint(d.attribute);
                                                       return{
                                              query: 'dms.dms.doctype.item_dms.item_dms.query_attribute',
                                           doctype : 'Item character',
