@@ -22,20 +22,32 @@ frappe.ui.form.on('Item dms', {
 
                                    },
 
-                      refresh: function(frm) {
+                          attribute: function(frm,cdt,cdn) {
+                                let d1 = frappe.get_doc(cdt,cdn);
+                                //msgprint(d1.attribute);
                                 frm.set_query('attribute_value','item_character',
-                                   function(doc,cdt,cdn) {
+                                   function(frm,cdt,cdn) {
 
-                                     var d = locals[cdt][cdn];
+                                     let  d = frappe.get_doc(cdt,cdn);
+                                     msgprint(d.attribute);
                                      return{
                                              query: 'dms.dms.doctype.item_dms.item_dms.query_attribute',
+                                          doctype : 'Item character',
+                                            txt   : '',
+                                        searchfield: '',
+                                          start   : '',
+                                          page_len: '',
+                                          
                                           filters : {
-                                                     'attribute' : d.attribute
+                                                     'attribute' : 'Material'
                                                   }
                                                             
                                         }
                                       });
                                   },
+
+
+
 
                    before_save: function(frm) {
 		                                           if(frm.doc.cat_name){
@@ -99,9 +111,12 @@ frappe.ui.form.on('Item dms', {
                                 });
 
 frappe.ui.form.on('Item character attribute', {
-	                            attribute_value:function(frm,cdt,cdn){
+                           attribute_value:function(frm,cdt,cdn){
                              let row = frappe.get_doc(cdt,cdn);
                             row.attribute_value_both = row.attribute_value
                            frm.set_df_property('attribute_value_both',  'read_only',  !frm.doc.attribute_value ? 0 : 1);
-                                                             }                 
+                                                             }
+
+   
+                 
 	                                         });
