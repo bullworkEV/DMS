@@ -59,6 +59,7 @@ frappe.ui.form.on('Item dms', {
                                                         frm.doc.item_name += ' '+ d.attribute_value_both;
                                                         });
                                                      }
+                                                
             
 	                                },
 
