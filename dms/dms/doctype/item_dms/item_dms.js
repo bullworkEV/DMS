@@ -23,27 +23,7 @@ frappe.ui.form.on('Item dms', {
                                    },
 
                           attribute: function(frm,cdt,cdn) {
-                                let d1 = frappe.get_doc(cdt,cdn);
-                                //msgprint(d1.attribute);
-                                frm.set_query('attribute_value','item_character',
-                                   function(frm,cdt,cdn) {
-
-                                     let  d = frappe.get_doc(cdt,cdn);
-                                     msgprint(d.attribute);
-                                     return{
-                                             query: 'dms.dms.doctype.item_dms.item_dms.query_attribute',
-                                          doctype : 'Item character',
-                                            txt   : '',
-                                        searchfield: '',
-                                          start   : '',
-                                          page_len: '',
-                                          
-                                          filters : {
-                                                     'attribute' : 'Material'
-                                                  }
-                                                            
-                                        }
-                                      });
+                               
                                   },
 
 
@@ -106,7 +86,28 @@ frappe.ui.form.on('Item dms', {
                                                         msgprint(frm.doc.trf_prodn);
 
 		                                                            });
-                                                            }    
+                                                            } 
+                                               let d1 = frappe.get_doc(cdt,cdn);
+                                                  //msgprint(d1.attribute);
+                                                frm.set_query('attribute_value','item_character',
+                                                       function(frm,cdt,cdn) {
+
+                                                      let  d = frappe.get_doc(cdt,cdn);
+                                                      msgprint(d.attribute);
+                                                      return{
+                                             query: 'dms.dms.doctype.item_dms.item_dms.query_attribute',
+                                          doctype : 'Item character',
+                                            txt   : '',
+                                        searchfield: '',
+                                          start   : '',
+                                          page_len: '',
+                                          
+                                          filters : {
+                                                     'attribute' : d.attribute
+                                                                          }
+                                                            
+                                                                   }
+                                                         });   
 	                                                    }
                                 });
 
