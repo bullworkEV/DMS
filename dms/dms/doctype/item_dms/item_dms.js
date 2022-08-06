@@ -3,6 +3,29 @@
 
 frappe.ui.form.on('Item dms', {
 
+                     validate: function(frm) {
+                                            frappe.call({
+                                                      method: "frappe.client.get_value",
+                                                        args: {
+                                                                 doctype: "Item",
+                                                                 filters: [["item_name","=",frm.doc.item_name]],
+                                                               fieldname: ["item_name","item_code"]
+                                                           },
+
+                                                      callback: function(r) {
+                                                                
+                                                                console.log(r.message);
+                                                                msgprint(r.message.item_name);
+                                                                msgprint(r.message.item_code);
+
+                                                                if (r.message.item_name){
+                                                msgprint('Material with this name already exist in Prodn. Cannot Save..');
+                                                            validated = false;
+                                                                                }
+                                                      }
+                                                 });
+                                        },
+
                       cat_name: function(frm){
 
                                 let cat_name = frm.doc.cat_name;
