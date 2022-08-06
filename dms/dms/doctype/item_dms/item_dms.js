@@ -4,6 +4,14 @@
 frappe.ui.form.on('Item dms', {
 
                      validate: function(frm) {
+
+                                           if(frm.doc.cat_name){
+                                                        frm.doc.item_name = frm.doc.cat_name;
+                                                        $.each(frm.doc.item_character,function(i,  d) {
+                                                        frm.doc.item_name += ' '+ d.attribute_value_both;
+                                                        });
+                                                     }
+
                                             frappe.call({
                                                       method: "frappe.client.get_value",
                                                         args: {
