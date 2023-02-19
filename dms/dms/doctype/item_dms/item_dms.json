@@ -306,14 +306,14 @@
    "default": "0",
    "fieldname": "trf_prodn",
    "fieldtype": "Check",
-   "hidden": 1,
-   "label": "Transferred Prodn"
+   "label": "Transferred Prodn",
+   "read_only": 1
   }
  ],
  "icon": "icon-tag",
  "links": [],
  "max_attachments": 1,
- "modified": "2022-08-03 12:43:17.619785",
+ "modified": "2023-02-19 17:48:28.449282",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Item dms",
