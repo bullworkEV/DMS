@@ -23,12 +23,12 @@
    "fieldname": "define_attributes",
    "fieldtype": "Table",
    "label": "Define attributes",
-   "options": "DMS Character"
+   "options": "Attribute Character"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-07-22 18:14:53.211582",
+ "modified": "2023-02-22 16:01:21.832823",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Attributes of Category",

@@ -11,7 +11,7 @@ frappe.ui.form.on('Item dms', {
                                                         frm.doc.item_name += ' '+ d.attribute_value_both;
                                                         });
                                                      }
-
+                                          if(frm.doc.maintain_attribute && frm.doc.__islocal==1){
                                             frappe.call({
                                                       method: "frappe.client.get_value",
                                                         args: {
@@ -32,6 +32,28 @@ frappe.ui.form.on('Item dms', {
                                                                                 }
                                                       }
                                                  });
+
+                                            frappe.call({
+                                                  method: "frappe.client.get_value",
+                                                    args: {
+                                                             doctype: "Item dms",
+                                                             filters: [["item_name","=",frm.doc.item_name]],
+                                                           fieldname: ["item_name","item_code"]
+                                                       },
+
+                                                  callback: function(r) {
+                                                            
+                                                            console.log(r.message);
+                                                            msgprint(r.message.item_name);
+                                                            msgprint(r.message.item_code);
+
+                                                            if (r.message.item_name){
+                                            msgprint('Material with this name already exist in DMS. Cannot Save..');
+                                                        validated = false;
+                                                                            }
+                                                  }
+                                             });
+                                            }
                                         },
 
                       cat_name: function(frm){
@@ -42,8 +64,9 @@ frappe.ui.form.on('Item dms', {
                                        method: "dms.dms.doctype.item_dms.item_dms.get_attribute_category",
                                          args: {'cat_name':cat_name},
                                      callback: function(r){
-   
+                                      
                                           $.each(r.message, function(i, r){
+                                          
                                           frm.add_child('item_character',{attribute: r.attribute,attribute_of:cat_name});
                                           frm.refresh_field('item_character')
   
@@ -76,6 +99,8 @@ frappe.ui.form.on('Item dms', {
                                                   frm.add_custom_button(__("Transfer Item to Prodn"), function() {
 		                                              var itemx = frappe.model.get_doc(cdt,cdn);
                                                   msgprint("M" + itemx.item_name);
+                                                  msgprint("M" + itemx.item_code);
+                                                  msgprint("M" + itemx.name);
                                                  frappe.call({
                                                       method: "frappe.client.get_value",
                                                         args: {
@@ -96,7 +121,9 @@ frappe.ui.form.on('Item dms', {
                                                                             url: "/api/resource/Item/",
                                                                            type: "post",
                                                                            args: {
-                                                                             data: {"item_name" : itemx.item_name,
+                                                                             data: {
+                                                                                    "item_code" : itemx.name,
+                                                                                    "item_name" : itemx.item_name,
                                                                                            "uom": itemx.uom,
                                                                                     "item_group":itemx.item_group,
                                                                                    "description":itemx.description,
@@ -110,7 +137,7 @@ frappe.ui.form.on('Item dms', {
                                                                                          }
                                                                                      });
                                                                            frm.set_value({trf_prodn : 1});
-                                                                         frm.set_value({item_code : r.message.item_code});
+                                                                         //frm.set_value({item_code : r.message.item_code});
                                                                           frm.save();
                                                                               }
                                                                           }
@@ -146,7 +173,22 @@ frappe.ui.form.on('Item dms', {
 frappe.ui.form.on('Item character attribute', {
                            attribute_value:function(frm,cdt,cdn){
                              let row = frappe.get_doc(cdt,cdn);
-                            row.attribute_value_both = row.attribute_value
+                           /*   var attrx = frappe.call({
+                              method: "frappe.db.get_list",
+                                args: {
+                                         doctype: "Item character value",
+                                         filters: [["character_value","=",'Aluminium']],
+                                       fields: ["abbr"]
+                                   },
+
+                              callback: function(r) {
+                                        msgprint("Message_1");
+                                        console.log(r.message);
+                                        msgprint(r.message.abbr);
+                                    }
+                            })    */
+                            
+                            row.attribute_value_both = row.attribute_value;
                            frm.set_df_property('attribute_value_both',  'read_only',  !frm.doc.attribute_value ? 0 : 1);
                                                              }
 

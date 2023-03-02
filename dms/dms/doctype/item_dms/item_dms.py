@@ -40,10 +40,10 @@ from erpnext.stock.doctype.item_default.item_default import ItemDefault
 
 class Itemdms(Document):
         def autoname(self):
-                if frappe.db.get_default("item_naming_by") == "Naming Series":
+                if frappe.db.get_default("item_dms_naming_by") == "Naming Series":
                         if self.variant_of:
                                 if not self.item_code:
-                                        template_item_name = frappe.db.get_value("Item", self.variant_of, "item_name")
+                                        template_item_name = frappe.db.get_value("Item dms", self.variant_of, "item_name")
                                         make_variant_item_code(self.variant_of, template_item_name, self)
                         else:
                                 from frappe.model.naming import set_name_by_naming_series
@@ -51,6 +51,7 @@ class Itemdms(Document):
                                 set_name_by_naming_series(self)
                                 self.item_code = self.name
 
+                
                 self.item_code = strip(self.item_code)
                 self.name = self.item_code
 	
@@ -59,13 +60,13 @@ class Itemdms(Document):
 def get_attribute_category(cat_name):
         attributes = frappe.db.sql(f""" SELECT b.attribute_name as attribute 
                        FROM `tabAttributes of Category` as a
-                       left join `tabDMS Character` as b on a.name=b.parent 
+                       left join `tabAttribute Character` as b on a.name=b.parent 
                        where  cat_name='{cat_name}' """, as_dict=True)
         return attributes
 #changes made
 @frappe.whitelist()
 def query_attribute(doctype,txt,searchfield,start,page_len,filters):
-        char_value=frappe.db.sql(""" select character_value 
+        char_value=frappe.db.sql(""" select character_value
                        from `tabItem character` as a
                        left join `tabItem character value` as b
                        on a.name = b.parent 

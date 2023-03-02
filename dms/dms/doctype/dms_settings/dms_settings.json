@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-03-02 19:03:25.313283",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_dms_naming_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_dms_naming_by",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Item dms naming by",
+   "options": "Item Code\nNaming Series"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-03-02 19:03:25.313283",
+ "modified_by": "Administrator",
+ "module": "dms",
+ "name": "DMS Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
