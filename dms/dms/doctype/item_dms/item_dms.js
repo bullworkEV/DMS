@@ -126,19 +126,20 @@ frappe.ui.form.on('Item dms', {
                                                                                     "item_name" : itemx.item_name,
                                                                                            "uom": itemx.uom,
                                                                                     "item_group":itemx.item_group,
-                                                                                   "description":itemx.description,
-                                                                                  "manufacturer":itemx.manufacturer,
-                                                                        "manufacturer_part_no":itemx.manufacturer_part_no
+                                                                                   "description":itemx.description  //,
+                                                                                //  "manufacturer":itemx.manufacturer,
+                                                                      //  "manufacturer_part_no":itemx.manufacturer_part_no
                                                                                 }
                                                                              },
                                                                           callback: function(r1) {
-                                                                                   console.log(JSON.stringfy(r1));
+                                                                                 //  console.log(r1.message);
                                                                                    msgprint(r1.message.item_code);
+                                                                                   frm.set_value({trf_prodn : 1});
+                                                                                   //frm.set_value({item_code : r.message.item_code});
+                                                                                    frm.save();
                                                                                          }
                                                                                      });
-                                                                           frm.set_value({trf_prodn : 1});
-                                                                         //frm.set_value({item_code : r.message.item_code});
-                                                                          frm.save();
+                                                                          
                                                                               }
                                                                           }
                                                                      });
@@ -188,8 +189,8 @@ frappe.ui.form.on('Item character attribute', {
                                     }
                             })    */
                             
-                            row.attribute_value_both = row.attribute_value;
-                           frm.set_df_property('attribute_value_both',  'read_only',  !frm.doc.attribute_value ? 0 : 1);
+                          row.attribute_value_both = row.attribute_value;
+                          frm.set_df_property('attribute_value_both',  'read_only',  !frm.doc.attribute_value ? 0 : 1);
                                                              }
 
    
