@@ -40,7 +40,7 @@ from erpnext.stock.doctype.item_default.item_default import ItemDefault
 
 class Itemdms(Document):
         def autoname(self):
-                if frappe.db.get_default("item_dms_naming_by") == "Naming Series":
+                if frappe.get_doc("DMS Settings").item_dms_naming_by == "Naming Series":
                         if self.variant_of:
                                 if not self.item_code:
                                         template_item_name = frappe.db.get_value("Item dms", self.variant_of, "item_name")

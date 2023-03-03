@@ -13,7 +13,7 @@
  "is_standard": 1,
  "label": "DMS - Document Management System",
  "links": [],
- "modified": "2022-07-22 18:35:09.277208",
+ "modified": "2023-03-03 11:24:17.979412",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "DMS - Document Management System",
@@ -35,7 +35,7 @@
   },
   {
    "doc_view": "",
-   "label": "Class definition",
+   "label": "Class Definition",
    "link_to": "Item Class dms",
    "type": "DocType"
   },
