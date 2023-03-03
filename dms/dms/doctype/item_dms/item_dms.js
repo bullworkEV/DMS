@@ -90,6 +90,9 @@ frappe.ui.form.on('Item dms', {
                                                         frm.doc.item_name += ' '+ d.attribute_value_both;
                                                         });
                                                      }
+                                                     if(!frm.doc.description){
+                                                      frm.doc.description = frm.doc.item_name;
+                                                        }
                                                 
             
 	                                },
@@ -98,12 +101,12 @@ frappe.ui.form.on('Item dms', {
 		                                           if (!frm.doc.trf_prodn && !frm.doc.__islocal) {
                                                   frm.add_custom_button(__("Transfer Item to Prodn"), function() {
 		                                              var itemx = frappe.model.get_doc(cdt,cdn);
-                                                  msgprint("M" + itemx.item_name);
+                                                  /* msgprint("M" + itemx.item_name);
                                                   msgprint("M" + itemx.item_code);
                                                   msgprint("M" + itemx.name);
-                                                  msgprint("M" + itemx.stock_uom);
-                                                  msgprint("M" + itemx.description);
-                                                  msgprint("M" + itemx.item_group);
+                                                  msgprint("M" + itemx.stock_uom); */
+                                                  msgprint("M" + itemx.manual_part_number);
+                                                  msgprint("M" + itemx.version); 
                                                  frappe.call({
                                                       method: "frappe.client.get_value",
                                                         args: {
@@ -129,7 +132,9 @@ frappe.ui.form.on('Item dms', {
                                                                                    "item_name" : itemx.item_name,
                                                                                            "uom": itemx.stock_uom,
                                                                                     "item_group":itemx.item_group,
-                                                                                   "description":itemx.item_name  //,
+                                                                                   "description":itemx.item_name, 
+                                                                                "manual_part_number":itemx.manual_part_number,
+                                                                                "version":itemx.version
                                                                                 //  "manufacturer":itemx.manufacturer,
                                                                       //  "manufacturer_part_no":itemx.manufacturer_part_no
                                                                              
