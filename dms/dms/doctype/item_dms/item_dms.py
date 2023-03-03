@@ -74,3 +74,15 @@ def query_attribute(doctype,txt,searchfield,start,page_len,filters):
                        .format(charname=filters["attribute"])
                        )
         return char_value
+
+@frappe.whitelist()
+def transfer_item_prodn(item_code,item_name,description,uom,item_group):
+
+        doc = frappe.get_doc({"doctype":"Item", "item_code" : item_code, "item_name": item_name,"description": description,
+                                      "uom" : uom,"item_group" : item_group})
+        doc.insert()
+	#doc.save()
+        frappe.db.commit()
+        #
+        # item_code = doc.item_code
+        return item_code
