@@ -8,10 +8,18 @@ frappe.ui.form.on('Item dms', {
                                            if(frm.doc.cat_name){
                                                         frm.doc.item_name = frm.doc.cat_name;
                                                         $.each(frm.doc.item_character,function(i,  d) {
-                                                        frm.doc.item_name += ' '+ d.attribute_value_both;
+                                                          if(d.attribute_value_both){
+                                                            if(!d.attribute_value){
+                                                        frm.doc.item_name += ' '+ d.attribute +':'+ d.attribute_value_both ;
+                                                            }
+                                                            else
+                                                            {
+                                                              frm.doc.item_name += ' '+  d.attribute_value_both ;
+                                                                  }
+                                                          }
                                                         });
                                                      }
-                                          if(frm.doc.maintain_attribute && frm.doc.__islocal==1){
+                                          if(frm.doc.maintain_attribute & frm.doc.__islocal==1){
                                             frappe.call({
                                                       method: "frappe.client.get_value",
                                                         args: {
