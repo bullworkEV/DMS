@@ -132,7 +132,7 @@ frappe.ui.form.on('Item dms', {
                                                                                    "item_name" : itemx.item_name,
                                                                                            "uom": itemx.stock_uom,
                                                                                     "item_group":itemx.item_group,
-                                                                                   "description":itemx.item_name, 
+                                                                                   "description":itemx.description, 
                                                                                 "manual_part_number":itemx.manual_part_number,
                                                                                 "version":itemx.version
                                                                                 //  "manufacturer":itemx.manufacturer,
