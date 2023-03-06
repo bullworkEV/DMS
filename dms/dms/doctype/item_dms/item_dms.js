@@ -87,7 +87,15 @@ frappe.ui.form.on('Item dms', {
 		                                           if(frm.doc.cat_name){
                                                         frm.doc.item_name = frm.doc.cat_name;
                                                         $.each(frm.doc.item_character,function(i,  d) {
-                                                        frm.doc.item_name += ' '+ d.attribute_value_both;
+                                                          if(d.attribute_value_both){
+                                                            if(!d.attribute_value){
+                                                        frm.doc.item_name += ' '+ d.attribute +':'+ d.attribute_value_both ;
+                                                            }
+                                                            else
+                                                            {
+                                                              frm.doc.item_name += ' '+  d.attribute_value_both ;
+                                                                  }
+                                                          }
                                                         });
                                                      }
                                                      if(!frm.doc.description){
@@ -132,9 +140,11 @@ frappe.ui.form.on('Item dms', {
                                                                                    "item_name" : itemx.item_name,
                                                                                            "uom": itemx.stock_uom,
                                                                                     "item_group":itemx.item_group,
-                                                                                   "description":itemx.description, 
-                                                                                "manual_part_number":itemx.manual_part_number,
-                                                                                "version":itemx.version
+                                                                                   "description":itemx.description,                                                                                   
+                                                                                    "manual_part_number":itemx.manual_part_number,                                                                                                                                                           
+                                                                                    "version":itemx.version
+                                                                                  
+                                                                                
                                                                                 //  "manufacturer":itemx.manufacturer,
                                                                       //  "manufacturer_part_no":itemx.manufacturer_part_no
                                                                              
