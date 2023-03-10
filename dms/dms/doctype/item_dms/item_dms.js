@@ -117,12 +117,8 @@ frappe.ui.form.on('Item dms', {
 		                                           if (!frm.doc.trf_prodn && !frm.doc.__islocal) {
                                                   frm.add_custom_button(__("Transfer Item to Prodn"), function() {
 		                                              var itemx = frappe.model.get_doc(cdt,cdn);
-                                                  /* msgprint("M" + itemx.item_name);
-                                                  msgprint("M" + itemx.item_code);
-                                                  msgprint("M" + itemx.name);
-                                                  msgprint("M" + itemx.stock_uom); */
-                                                  msgprint("M" + itemx.manual_part_number);
-                                                  msgprint("M" + itemx.version); 
+                                                  //msgprint("M" + itemx.manual_part_number);
+                                                  //msgprint("M" + itemx.version); 
                                                  frappe.call({
                                                       method: "frappe.client.get_value",
                                                         args: {
@@ -132,10 +128,10 @@ frappe.ui.form.on('Item dms', {
                                                            },
 
                                                       callback: function(r) {
-                                                                msgprint("Message_1");
+                                                                //msgprint("Message_1");
                                                                 console.log(r.message);
-                                                                msgprint(r.message.item_name);
-                                                                msgprint(r.message.item_code);
+                                                                //msgprint(r.message.item_name);
+                                                                //msgprint(r.message.item_code);
 
                                                                 if (!r.message.item_name){
                       
@@ -162,9 +158,9 @@ frappe.ui.form.on('Item dms', {
                                                                              },
                                                                           callback: function(r1) {
                                                                                  //  console.log(r1.message);
-                                                                                   msgprint(r1.message.item_code);
+                                                                                   msgprint(r1.message.item_code transferred to Prodn..);
                                                                                    frm.set_value({trf_prodn : 1});
-                                                                                   //frm.set_value({item_code : r.message.item_code});
+                                                                                   
                                                                                     frm.save();
                                                                                          }
                                                                                      });
@@ -176,52 +172,7 @@ frappe.ui.form.on('Item dms', {
 
 		                                                            });
                                                             } 
-                                  //-------------
-                           /*        if (!frm.doc.trf_prodn && !frm.doc.__islocal) {
-                                    frm.add_custom_button(__("Transfer Item to Prodn"), function() {
-                                    var itemx = frappe.model.get_doc(cdt,cdn);
-                                    msgprint("M" + itemx.item_name);
-                                    msgprint("M" + itemx.item_code);
-                                    msgprint("M" + itemx.name);
-                                    msgprint("M" + itemx.stock_uom);
-                                    msgprint("M" + itemx.description);
-                                    msgprint("M" + itemx.item_group);
-                                          
-                                                           frappe.call({
-                                                             method: "dms.dms.doctype.item_dms.item_dms.transfer_item_prodn",
-                                                             //type: "post",
-                                                             args: {
-                                                               
-                                                                    item_code : itemx.item_code,
-                                                                     item_name : itemx.item_name,
-                                                                             uom: itemx.stock_uom,
-                                                                      item_group:itemx.item_group,
-                                                                     description:itemx.item_name  //,
-                                                                  //  "manufacturer":itemx.manufacturer,
-                                                        //  "manufacturer_part_no":itemx.manufacturer_part_no
-                                                               
-                                                               },
-                                                            callback: function(r1) {
-                                                                   //  console.log(r1.message);
-                                                                     msgprint(r1.message.item_code);
-                                                                     frm.set_value({trf_prodn : 1});
-                                                                     //frm.set_value({item_code : r.message.item_code});
-                                                                      frm.save();
-                                                                           }
-                                                                       });
-                                                            
-                                                                }
-                                    )
-                                                        }
-                                                      }
-                                               */
-
-                                          //--------------------------    
-                                                                
-                                   
-                                  
-                                              // let d1 = frappe.get_doc(cdt,cdn);
-                                                  //msgprint(d1.attribute);
+                                
                                                   frm.set_query('attribute_value','item_character',
                                                        function(frm,cdt,cdn) {
 
