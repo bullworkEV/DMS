@@ -150,7 +150,10 @@ frappe.ui.form.on('Item dms', {
                                                                                     "item_group":itemx.item_group,
                                                                                    "description":itemx.description,                                                                                   
                                                                                     "manual_part_number":itemx.manual_part_number,                                                                                                                                                           
-                                                                                    "version":itemx.version
+                                                                                    "version":itemx.version,
+                                                                                    "weight_per_unit":itemx.weight_per_unit,
+                                                                                    "weight_uom":itemx.weight_uom,
+                                                                                    "valuation_rate":itemx.valuation_rate
                                                                                   
                                                                                 
                                                                                 //  "manufacturer":itemx.manufacturer,

@@ -15,12 +15,16 @@
   "trf_prodn",
   "variant_of",
   "item_name",
+  "section_break_main",
   "manual_part_number",
   "version",
   "item_group",
   "stock_uom",
   "column_break0",
   "disabled",
+  "valuation_rate",
+  "weight_per_unit",
+  "weight_uom",
   "image",
   "section_break_11",
   "description",
@@ -36,8 +40,6 @@
   "has_serial_no",
   "serial_no_series",
   "column_break1",
-  "net_weight",
-  "weight_uom",
   "variants_section",
   "has_variants",
   "attributes",
@@ -217,17 +219,10 @@
    "width": "50%"
   },
   {
-   "depends_on": "is_stock_item",
-   "fieldname": "net_weight",
-   "fieldtype": "Float",
-   "label": "Net Weight"
-  },
-  {
-   "depends_on": "eval:doc.is_stock_item",
    "fieldname": "weight_uom",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
    "label": "Weight UOM",
+   "mandatory_depends_on": "eval:(doc.weight_per_unit);",
    "options": "UOM"
   },
   {
@@ -247,9 +242,11 @@
    "no_copy": 1
   },
   {
+   "depends_on": "has_variants",
    "fieldname": "attributes",
    "fieldtype": "Table",
    "label": "Attributes",
+   "mandatory_depends_on": "eval:(doc.has_variants)",
    "no_copy": 1,
    "options": "Item Variant Attribute"
   },
@@ -324,12 +321,26 @@
    "fieldtype": "Data",
    "label": "Drawing Version",
    "length": 2
+  },
+  {
+   "fieldname": "valuation_rate",
+   "fieldtype": "Currency",
+   "label": "Valuation Rate"
+  },
+  {
+   "fieldname": "weight_per_unit",
+   "fieldtype": "Float",
+   "label": "Weight per unit"
+  },
+  {
+   "fieldname": "section_break_main",
+   "fieldtype": "Section Break"
   }
  ],
  "icon": "icon-tag",
  "links": [],
  "max_attachments": 1,
- "modified": "2023-03-06 14:16:44.885198",
+ "modified": "2023-03-10 12:18:28.821287",
  "modified_by": "Administrator",
  "module": "dms",
  "name": "Item dms",
