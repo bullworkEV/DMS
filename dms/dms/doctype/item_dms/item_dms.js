@@ -158,7 +158,7 @@ frappe.ui.form.on('Item dms', {
                                                                              },
                                                                           callback: function(r1) {
                                                                                  //  console.log(r1.message);
-                                                                                   msgprint(r1.message.item_code transferred to Prodn..);
+                                                                                   msgprint(r1.message.item_code);
                                                                                    frm.set_value({trf_prodn : 1});
                                                                                    
                                                                                     frm.save();
@@ -171,7 +171,7 @@ frappe.ui.form.on('Item dms', {
                                                         msgprint(frm.doc.trf_prodn);
 
 		                                                            });
-                                                            } 
+                                                            }
                                 
                                                   frm.set_query('attribute_value','item_character',
                                                        function(frm,cdt,cdn) {
