@@ -137,6 +137,9 @@ frappe.ui.form.on('Item dms', {
                       
                                                                          frappe.call({
                                                                            method: "dms.dms.doctype.item_dms.item_dms.transfer_item_prodn",
+                                                                           freeze: true,
+                                                                					freeze_message: __('Transferring to Prodn..'),
+
                                                                            //type: "post",
                                                                            args: {
                                                                              
