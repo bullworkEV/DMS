@@ -175,6 +175,25 @@ frappe.ui.form.on('Item dms', {
 
 		                                                            });
                                                             }
+
+                                frm.set_df_property('item_name',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('item_code',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('manual_part_number',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('version',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('item_group',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('stock_uom',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('description',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('item_character',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('maintain_attribute',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('cat_name',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('weight_per_unit',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('weight_uom',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('valuation_rate',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('has_variants',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('attribute',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('manufacturer',  'read_only',  frm.doc.trf_prodn==1);
+                                frm.set_df_property('manufacturer_part_no',  'read_only',  frm.doc.trf_prodn==1);
+
                                 
                                                   frm.set_query('attribute_value','item_character',
                                                        function(frm,cdt,cdn) {
