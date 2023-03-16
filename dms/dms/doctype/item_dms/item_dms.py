@@ -88,3 +88,31 @@ def transfer_item_prodn(item_code,item_name,description,uom,item_group,
 		doc.insert()
 		frappe.db.commit()
 		return item_code
+
+@frappe.whitelist()
+def transfer_item_variant_prodn(item_code,item_name,description,uom,item_group,has_variants,
+                                manual_part_number='',version='',weight_per_unit=0,weight_uom='Kg',valuation_rate=0
+								):
+
+		arg1 = {"doctype":"Item", "item_code" : item_code, "item_name": item_name,"description": description,
+                                      "uom" : uom,"item_group" : item_group, "manual_part_number" : manual_part_number,
+                                      "version" : version,"weight_per_unit" : weight_per_unit, "weight_uom":weight_uom,
+                                      "valuation_rate":valuation_rate,"has_variants":has_variants}
+
+		if has_variants==1:
+			arg2 = {}
+			arg3=[]
+			doc1 = frappe.get_doc("Item dms",item_code)
+			for d in doc1.attributes:
+				arg2["variant_of"]=item_code
+				arg2["attribute"]=d.attribute
+				arg3.append(arg2)
+				arg2={}
+
+			arg1['attributes']=arg3
+				
+
+		doc = frappe.get_doc(arg1)
+		doc.insert()
+		frappe.db.commit()
+		return item_code

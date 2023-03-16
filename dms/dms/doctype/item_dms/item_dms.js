@@ -134,31 +134,58 @@ frappe.ui.form.on('Item dms', {
                                                                 //msgprint(r.message.item_code);
 
                                                                 if (!r.message.item_name){
-                      
+
+                                                                  let args1 = {
+                                                                             
+                                                                          "item_code" : itemx.item_code,
+                                                                           "item_name" : itemx.item_name,
+                                                                                   "uom": itemx.stock_uom,
+                                                                            "item_group":itemx.item_group,
+                                                                           "description":itemx.description,                                                                                   
+                                                                            "manual_part_number":itemx.manual_part_number,                                                                                                                                                           
+                                                                            "version":itemx.version,
+                                                                            "weight_per_unit":itemx.weight_per_unit,
+                                                                            "weight_uom":itemx.weight_uom,
+                                                                            "valuation_rate":itemx.valuation_rate,
+                                                                            "has_variants":itemx.has_variants
+                                                                                                                                                 
+                                                                        //  "manufacturer":itemx.manufacturer,
+                                                              //  "manufacturer_part_no":itemx.manufacturer_part_no
+                                                                     
+                                                                     }
+                                                            /*          let args2 ={}
+                                                                if (frm.doc.has_variants){
+
+                                                                      args2 = {
+                                                                        "has_variants" : 1
+                                                                          
+                                                                      }
+                                                                } */
+                                                                /* let args3 = {...args1,...args2} */
                                                                          frappe.call({
-                                                                           method: "dms.dms.doctype.item_dms.item_dms.transfer_item_prodn",
+                                                                           method: "dms.dms.doctype.item_dms.item_dms.transfer_item_variant_prodn",
                                                                            freeze: true,
                                                                 					freeze_message: __('Transferring to Prodn..'),
 
                                                                            //type: "post",
                                                                            args: {
                                                                              
-                                                                                  "item_code" : itemx.item_code,
-                                                                                   "item_name" : itemx.item_name,
-                                                                                           "uom": itemx.stock_uom,
-                                                                                    "item_group":itemx.item_group,
-                                                                                   "description":itemx.description,                                                                                   
-                                                                                    "manual_part_number":itemx.manual_part_number,                                                                                                                                                           
-                                                                                    "version":itemx.version,
-                                                                                    "weight_per_unit":itemx.weight_per_unit,
-                                                                                    "weight_uom":itemx.weight_uom,
-                                                                                    "valuation_rate":itemx.valuation_rate
-                                                                                  
-                                                                                
-                                                                                //  "manufacturer":itemx.manufacturer,
-                                                                      //  "manufacturer_part_no":itemx.manufacturer_part_no
-                                                                             
-                                                                             },
+                                                                            "item_code" : itemx.item_code,
+                                                                             "item_name" : itemx.item_name,
+                                                                                     "uom": itemx.stock_uom,
+                                                                              "item_group":itemx.item_group,
+                                                                             "description":itemx.description,                                                                                   
+                                                                              "manual_part_number":itemx.manual_part_number,                                                                                                                                                           
+                                                                              "version":itemx.version,
+                                                                              "weight_per_unit":itemx.weight_per_unit,
+                                                                              "weight_uom":itemx.weight_uom,
+                                                                              "valuation_rate":itemx.valuation_rate,
+                                                                              "has_variants":itemx.has_variants
+                                                                                                                                                   
+                                                                          //  "manufacturer":itemx.manufacturer,
+                                                                //  "manufacturer_part_no":itemx.manufacturer_part_no
+                                                                       
+                                                                       },
                                                                           callback: function(r1) {
                                                                                  //  console.log(r1.message);
                                                                                    msgprint(r1.message.item_code);
@@ -194,7 +221,7 @@ frappe.ui.form.on('Item dms', {
                                 frm.set_df_property('manufacturer',  'read_only',  frm.doc.trf_prodn==1);
                                 frm.set_df_property('manufacturer_part_no',  'read_only',  frm.doc.trf_prodn==1);
 
-                                
+
                                                   frm.set_query('attribute_value','item_character',
                                                        function(frm,cdt,cdn) {
 
