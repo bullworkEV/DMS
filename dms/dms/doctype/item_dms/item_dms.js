@@ -146,9 +146,8 @@ frappe.ui.form.on('Item dms', {
                                                                             "version":itemx.version,
                                                                             "weight_per_unit":itemx.weight_per_unit,
                                                                             "weight_uom":itemx.weight_uom,
-                                                                            "valuation_rate":itemx.valuation_rate,
-                                                                            "has_variants":itemx.has_variants
-                                                                                                                                                 
+                                                                            "valuation_rate":itemx.valuation_rate
+                                                                                                                                                                                                                             
                                                                         //  "manufacturer":itemx.manufacturer,
                                                               //  "manufacturer_part_no":itemx.manufacturer_part_no
                                                                      
@@ -163,7 +162,7 @@ frappe.ui.form.on('Item dms', {
                                                                 } */
                                                                 /* let args3 = {...args1,...args2} */
                                                                          frappe.call({
-                                                                           method: "dms.dms.doctype.item_dms.item_dms.transfer_item_variant_prodn",
+                                                                           method: "dms.dms.doctype.item_dms.item_dms.transfer_item_prodn",
                                                                            freeze: true,
                                                                 					freeze_message: __('Transferring to Prodn..'),
 
