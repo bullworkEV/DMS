@@ -112,7 +112,13 @@ def transfer_item_variant_prodn(item_code,item_name,description,uom,item_group,h
 			doc1 = frappe.get_doc("Item dms",item_code)
 			for d in doc1.attributes:
 				#arg2["variant_of"]=item_code
+				doc2 = frappe.get_doc("Item Attribute",d.attribute)
 				arg2["attribute"]=d.attribute
+				if doc2.numeric_values==1:
+					arg2["numeric_values"]=doc2.numeric_values
+					arg2["from_range"]=doc2.from_range
+					arg2["to_range"]=doc2.to_range
+					arg2["increment"]=doc2.increment
 				arg3.append(arg2)
 				arg2={}
 
