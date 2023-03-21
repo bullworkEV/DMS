@@ -36,7 +36,7 @@ frappe.ui.form.on('Item dms', {
 
                                                                 if (r.message.item_name){
                                                 msgprint('Material with this name already exist in Prodn. Cannot Save..');
-                                                            validated = false;
+                                                            validated = true;
                                                                                 }
                                                       }
                                                  });
@@ -57,7 +57,7 @@ frappe.ui.form.on('Item dms', {
 
                                                             if (r.message.item_name){
                                             msgprint('Material with this name already exist in DMS. Cannot Save..');
-                                                        validated = false;
+                                                        validated = true;
                                                                             }
                                                   }
                                              });
@@ -190,7 +190,7 @@ frappe.ui.form.on('Item dms', {
                                                                                    msgprint(r1.message.item_code);
                                                                                    frm.set_value({trf_prodn : 1});
                                                                                    
-                                                                                    frm.save();
+                                                                                   frm.save();
                                                                                          }
                                                                                      });
                                                                           

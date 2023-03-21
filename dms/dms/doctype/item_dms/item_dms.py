@@ -94,6 +94,8 @@ def transfer_item_prodn(item_code,item_name,description,uom,item_group,
                                       "valuation_rate":valuation_rate})
 			doc.insert()
 			frappe.db.commit()
+		#frappe.db.set_value("Item dms",item_code, "trf_prodn", 1)
+		#frappe.db.commit()
 		return item_code
 
 @frappe.whitelist()
