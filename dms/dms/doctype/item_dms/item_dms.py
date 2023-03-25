@@ -82,7 +82,7 @@ def transfer_item_prodn(item_code,item_name,description,uom,item_group,
                                 manual_part_number='',version='',weight_per_unit=0,weight_uom='Kg',valuation_rate=0):
 
 		has_variants = frappe.get_doc("Item dms",item_code).has_variants
-		frappe.msgprint(has_variants)
+		#frappe.msgprint(has_variants)
 
 		if has_variants==1:
 			transfer_item_variant_prodn(item_code,item_name,description,uom,item_group,has_variants,

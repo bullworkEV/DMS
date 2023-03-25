@@ -36,7 +36,7 @@ frappe.ui.form.on('Item dms', {
 
                                                                 if (r.message.item_name){
                                                 msgprint('Material with this name already exist in Prodn. Cannot Save..');
-                                                            validated = true;
+                                                            validated = false;
                                                                                 }
                                                       }
                                                  });
@@ -57,11 +57,19 @@ frappe.ui.form.on('Item dms', {
 
                                                             if (r.message.item_name){
                                             msgprint('Material with this name already exist in DMS. Cannot Save..');
-                                                        validated = true;
+                                                        validated = false;
                                                                             }
                                                   }
                                              });
                                             }
+                                            if (frm.doc.naming_series.substring(0,2)!=frm.doc.item_group.substring(0,2))  {
+                                              msgprint('Naming series should be relevant to Item Group..');
+                                             validated = false;
+                                         }   
+                                         if (frm.doc.name!=frm.doc.item_code)  {
+                                          msgprint('Item code should be same as Name..');
+                                         validated = false;
+                                     }   
                                         },
 
                       cat_name: function(frm){
@@ -186,8 +194,10 @@ frappe.ui.form.on('Item dms', {
                                                                        
                                                                        },
                                                                           callback: function(r1) {
-                                                                                 //  console.log(r1.message);
-                                                                                   msgprint(r1.message.item_code);
+                                                                                  console.log(r1.message);
+                                                                               //   msgprint('XYZ');
+
+                                                                                 //  msgprint(r1.message.item_code);
                                                                                    frm.set_value({trf_prodn : 1});
                                                                                    
                                                                                    frm.save();
@@ -197,7 +207,7 @@ frappe.ui.form.on('Item dms', {
                                                                               }
                                                                           }
                                                                      });
-                                                        msgprint(frm.doc.trf_prodn);
+                                                        //msgprint(frm.doc.trf_prodn);
 
 		                                                            });
                                                             }
