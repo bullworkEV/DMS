@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 import copy
 import json
 from typing import Dict, List, Optional
+import pandas as pd
 
 import frappe
 from frappe import _
@@ -133,3 +134,14 @@ def transfer_item_variant_prodn(item_code,item_name,description,uom,item_group,h
 		doc.insert()
 		frappe.db.commit()
 		return item_code
+
+@frappe.whitelist()
+def update_trf_status_itemdms_background():
+	df = frappe.get_all('Item dms',{'trf_prodn':0})
+	df1 = pd.DataFrame.from_records(df)
+	for index,row in df1.iterrows():
+		doc= frappe.get_value('Item',row['name'])
+		if doc:
+			frappe.db.set_value("Item dms",row['name'], "trf_prodn", 1)
+			frappe.db.commit()
+
