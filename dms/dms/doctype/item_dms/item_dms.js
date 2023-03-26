@@ -68,7 +68,7 @@ frappe.ui.form.on('Item dms', {
                                          }   
                                          if (frm.doc.name!=frm.doc.item_code)  {
                                           msgprint('Item code should be same as Name..');
-                                         validated = false;
+                                         validated = true;
                                      }   
                                         },
 

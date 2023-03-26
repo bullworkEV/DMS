@@ -75,15 +75,15 @@ app_version = "0.0.1"
 # Scheduled Tasks
 # ---------------
 
- scheduler_events = {
+# scheduler_events = {
 
-	"cron": {
+#	"cron": {
 		
-		# Hourly but offset by 30 minutes
-		"30 * * * *": [
-			"from dms.dms.doctype.item_dms.item_dms import update_trf_status_itemdms_background",
-		]
-	},
+#		# Hourly but offset by 30 minutes
+#		"30 * * * *": [
+#			"from dms.dms.doctype.item_dms.item_dms import update_trf_status_itemdms_background",
+#		]
+#	},
 # 	"all": [
 # 		"dms.tasks.all"
 # 	],
@@ -99,7 +99,7 @@ app_version = "0.0.1"
 # 	"monthly": [
 # 		"dms.tasks.monthly"
 # 	]
- }
+# }
 
 # Testing
 # -------
