@@ -80,19 +80,25 @@ def query_attribute(doctype,txt,searchfield,start,page_len,filters):
 
 @frappe.whitelist()
 def transfer_item_prodn(item_code,item_name,description,uom,item_group,
-                                manual_part_number='',version='',weight_per_unit=0,weight_uom='Kg',valuation_rate=0):
+                                manual_part_number='',version='',weight_per_unit=0,weight_uom='Kg',valuation_rate=0,is_fixed_asset=0):
 
 		has_variants = frappe.get_doc("Item dms",item_code).has_variants
+		is_fixed_asset = frappe.get_doc("Item dms",item_code).is_fixed_asset
+		asset_category = frappe.get_doc("Item dms",item_code).asset_category
 		#frappe.msgprint(has_variants)
+		if is_fixed_asset==1:
+			is_stock_item = 0
+		else:
+			is_stock_item = 1
 
 		if has_variants==1:
 			transfer_item_variant_prodn(item_code,item_name,description,uom,item_group,has_variants,
-								manual_part_number='',version='',weight_per_unit=0,weight_uom='Kg',valuation_rate=0)
+								manual_part_number='',version='',weight_per_unit=0,weight_uom='Kg',valuation_rate=0,is_fixed_asset=0,is_stock_item=1,asset_category='')
 		else:
 			doc = frappe.get_doc({"doctype":"Item", "item_code" : item_code, "item_name": item_name,"description": description,
                                       "uom" : uom,"item_group" : item_group, "manual_part_number" : manual_part_number,
                                       "version" : version,"weight_per_unit" : weight_per_unit, "weight_uom":weight_uom,
-                                      "valuation_rate":valuation_rate})
+                                      "valuation_rate":valuation_rate,"is_fixed_asset":is_fixed_asset,"is_stock_item":is_stock_item,"asset_category":asset_category})
 			doc.insert()
 			frappe.db.commit()
 		#frappe.db.set_value("Item dms",item_code, "trf_prodn", 1)
@@ -101,13 +107,13 @@ def transfer_item_prodn(item_code,item_name,description,uom,item_group,
 
 @frappe.whitelist()
 def transfer_item_variant_prodn(item_code,item_name,description,uom,item_group,has_variants,
-                                manual_part_number='',version='',weight_per_unit=0,weight_uom='Kg',valuation_rate=0
+                                manual_part_number='',version='',weight_per_unit=0,weight_uom='Kg',valuation_rate=0,is_fixed_asset=False,is_stock_item=1,asset_category=''
 								):
 
 		arg1 = {"doctype":"Item", "item_code" : item_code, "item_name": item_name,"description": description,
                                       "uom" : uom,"item_group" : item_group, "manual_part_number" : manual_part_number,
                                       "version" : version,"weight_per_unit" : weight_per_unit, "weight_uom":weight_uom,
-                                      "valuation_rate":valuation_rate,"has_variants":1}
+                                      "valuation_rate":valuation_rate,"has_variants":1,"is_fixed_asset":is_fixed_asset,"is_stock_item":is_stock_item,"asset_category":asset_category}
 
 		if has_variants==1:
 			arg2 = {}

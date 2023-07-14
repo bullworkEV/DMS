@@ -154,7 +154,8 @@ frappe.ui.form.on('Item dms', {
                                                                             "version":itemx.version,
                                                                             "weight_per_unit":itemx.weight_per_unit,
                                                                             "weight_uom":itemx.weight_uom,
-                                                                            "valuation_rate":itemx.valuation_rate
+                                                                            "valuation_rate":itemx.valuation_rate,
+                                                                            "is_fixed_asset":itemx.is_fixed_asset
                                                                                                                                                                                                                              
                                                                         //  "manufacturer":itemx.manufacturer,
                                                               //  "manufacturer_part_no":itemx.manufacturer_part_no
@@ -187,7 +188,8 @@ frappe.ui.form.on('Item dms', {
                                                                               "weight_per_unit":itemx.weight_per_unit,
                                                                               "weight_uom":itemx.weight_uom,
                                                                               "valuation_rate":itemx.valuation_rate,
-                                                                              "has_variants":itemx.has_variants
+                                                                              "has_variants":itemx.has_variants,
+                                                                              "is_fixed_asset":itemx.is_fixed_asset
                                                                                                                                                    
                                                                           //  "manufacturer":itemx.manufacturer,
                                                                 //  "manufacturer_part_no":itemx.manufacturer_part_no
