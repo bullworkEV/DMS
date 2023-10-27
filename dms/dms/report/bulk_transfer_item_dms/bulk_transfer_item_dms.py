@@ -107,15 +107,27 @@ def get_columns():
 @frappe.whitelist()
 def trf_item_prodn_from_report(selected_rows):
 	frappe.msgprint(selected_rows)
-	#df1 = pd.DataFrame.from_records(json.loads(frappe.as_json(selected_rows)))
-	df1 = pd.DataFrame.from_records(json.loads(frappe.as_json(selected_rows)))
-	#validate_selection(df1)
-	#for doc in df1['item_code']:
+		
 	for i in range(20):
 	#	frappe.msgprint(doc.item_code)
 		""" if not d['weight_uom']:
 			d['weight_uom']='Kg' """
 		d = frappe.get_doc("Item dms",json.loads(selected_rows)[i]['item_code'])
+		res = transfer_item_prodn(d.item_code,d.item_name,d.description,d.stock_uom,d.item_group,
+                                d.manual_part_number,d.version,d.weight_per_unit,d.weight_uom,d.valuation_rate)
+		frappe.msgprint("Transferred :",i)
+		d.trf_prodn=1
+		d.save()
+		frappe.db.commit()
+	return df1
+
+@frappe.whitelist()
+def trf_item_prodn_from_cad_interface(selected_rows):
+	frappe.msgprint(selected_rows)
+	#df1 = pd.DataFrame.from_records(json.loads(frappe.as_json(selected_rows)))
+	
+	for i in range(20):
+		d = frappe.get_doc("Item dms",json.loads(selected_rows)[i]['erp_item_code'])
 		res = transfer_item_prodn(d.item_code,d.item_name,d.description,d.stock_uom,d.item_group,
                                 d.manual_part_number,d.version,d.weight_per_unit,d.weight_uom,d.valuation_rate)
 		frappe.msgprint("Transferred :",i)
